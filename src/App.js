@@ -1,53 +1,62 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Movie from './movie';
 
-const movies = [
-  {
-    id: 1,
-    title: "The Office US",
-    poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-  },
-  {
-    id: 2,
-    title: "Silicon Valley",
-    poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-  },
-  {
-    id: 3,
-    title: "Avengers",
-    poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-  },
-  {
-    id: 4,
-    title: "Love Actually",
-    poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-  },
-];
-
 class App extends Component {
+
+  state = {};
+
   componentWillMount() {
-    console.log("BEFORE Rendering");
   }
 
   // render : componentWillMount() -> render() -> componentDidMount()
   // update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
+
+  _renderMovies = () => {
+    const movies = this.state.movies.map((movie, index) => {
+      return <Movie title={movie.title} poster={movie.poster} key={index}/>
+    });
+
+    return movies;
+  }
+
   render() {
-    console.log("Rendering...");
     return (
       <div className="App">
-        {
-          movies.map((movie, index) => {
-            return <Movie title={movie.title} poster={movie.poster} key={index}/>
-          })
-        }
+        {this.state.movies?this._renderMovies():'loading...'}
       </div>
     );
   }
 
 
+
   componentDidMount() {
-    console.log("AFTER Rendering");
+    setTimeout(() => {
+      this.setState({
+        movies: [
+          {
+            id: 1,
+            title: "The Office US",
+            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
+          },
+          {
+            id: 2,
+            title: "Silicon Valley",
+            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
+          },
+          {
+            id: 3,
+            title: "Avengers",
+            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
+          },
+          {
+            id: 4,
+            title: "Love Actually",
+            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
+          },
+        ]
+      });
+    }, 3000);
   }
 
 
