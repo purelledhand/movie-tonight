@@ -14,17 +14,14 @@ class Movie extends Component {
         <MoviePoster poster={this.props.poster}/>
         <h1>{this.props.title}</h1>
       </div>
-
     );
   }
 }
 
-class MoviePoster extends Component {
-  render() {
+function MoviePoster({poster}) {
     return (
-      <img src={this.props.poster}/>
+      <img src={poster} alt="moviePoster"/>
     );
-  }
 }
 
 export default Movie;
