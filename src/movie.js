@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './movie.css';
 
-function Movie({title, poster}) {
+function Movie({title, poster, genres, synopsis, rating}) {
   return (
-    <div>
+    <div className="movie-container">
       <MoviePoster poster={poster}/>
-      <h1>{title}</h1>
+      <div className="desc-container">
+        <h1>{title}, {rating}</h1>
+        <div>{genres}</div>
+        <div>{synopsis}</div>
+      </div>
     </div>
   );
 }

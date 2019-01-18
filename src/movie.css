@@ -1,0 +1,21 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/spoqa-han-sans/2.1.2/css/SpoqaHanSans-kr.min.css);
+
+* {font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';}
+
+.movie-container {
+    height: 345px;
+    width:  1000px;
+    box-shadow: #aaa;
+    margin: 10px auto;
+    background-color: #eee;
+}
+
+.desc-container {
+    display: inline;
+    float: right;
+    width:  750px;
+}
+
+.desc-container h1 {
+    font-size: 30px;
+}

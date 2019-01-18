@@ -10,16 +10,21 @@ class App extends Component {
   // update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
 
   _renderMovies = () => {
-    if(!this.state.movies) return;
     const movies = this.state.movies.map((movie) => {
-      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id}/>
+      return <Movie title={movie.title_long}
+                    poster={movie.medium_cover_image}
+                    key={movie.id}
+                    genres={movie.genres}
+                    synopsis={movie.synopsis}
+                    rating={movie.rating}
+      />
     });
-
+    console.log(this.state.movies);
     return movies;
   };
 
   _callApi = () => {
-    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=download_count')
     .then(response => response.json())
     .then(json => json.data.movies)
     .catch(err => err);
