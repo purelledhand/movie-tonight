@@ -6,59 +6,43 @@ class App extends Component {
 
   state = {};
 
-  componentWillMount() {
-  }
-
   // render : componentWillMount() -> render() -> componentDidMount()
   // update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
 
   _renderMovies = () => {
-    const movies = this.state.movies.map((movie, index) => {
-      return <Movie title={movie.title} poster={movie.poster} key={index}/>
+    if(!this.state.movies) return;
+    const movies = this.state.movies.map((movie) => {
+      return <Movie title={movie.title} poster={movie.medium_cover_image} key={movie.id}/>
     });
 
     return movies;
-  }
+  };
+
+  _callApi = () => {
+    return fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    .then(response => response.json())
+    .then(json => json.data.movies)
+    .catch(err => err);
+  };
+
+  _getMovies = async () => {
+    const movies = await this._callApi();
+    this.setState({
+      movies
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        {this.state.movies?this._renderMovies():'loading...'}
+        {this.state.movies ? this._renderMovies() : 'loading...'}
       </div>
     );
   }
 
-
-
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        movies: [
-          {
-            id: 1,
-            title: "The Office US",
-            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-          },
-          {
-            id: 2,
-            title: "Silicon Valley",
-            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-          },
-          {
-            id: 3,
-            title: "Avengers",
-            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-          },
-          {
-            id: 4,
-            title: "Love Actually",
-            poster: "https://upload.wikimedia.org/wikipedia/en/5/58/TheOffice_S7_DVD.jpg",
-          },
-        ]
-      });
-    }, 3000);
+    this._getMovies();
   }
-
 
 }
 
