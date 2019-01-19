@@ -14,9 +14,11 @@ class App extends Component {
       return <Movie title={movie.title_long}
                     poster={movie.medium_cover_image}
                     key={movie.id}
+                    id={movie.id}
                     genres={movie.genres}
                     synopsis={movie.synopsis}
                     rating={movie.rating}
+                    torrents={movie.torrents}
       />
     });
     console.log(this.state.movies);
@@ -39,8 +41,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : 'loading...'}
+      <div className={this.state.movies ? "App" : "App--loading"}>
+        {this.state.movies ? this._renderMovies() : "Loading"}
       </div>
     );
   }
