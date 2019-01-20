@@ -4,6 +4,24 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+function Navbar() {
+  return (
+    <div className="Navbar">
+      <h1>MOVIETONIGHT</h1>
+      <div className="Navi_list">
+        <ul>
+          <li>다운로드 많은 순</li>
+          <li>평점 높은 순</li>
+          <li>좋아요 많은 순</li>
+          <li>최근 개봉 순</li>
+          <li>피어 많은 순</li>
+          <li>시드 많은 순</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+//ReactDOM.render(<Navbar/>, document.getElementById('navigation'));
 ReactDOM.render(<App />, document.getElementById('root'));
 document.querySelector("head").innerHTML +=
   '<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossOrigin="anonymous">';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './movie.css';
 
-function Movie({title, poster, genres, synopsis, rating, torrents}) {
+function Movie({title, poster, genres, rating, torrents}) {
   return (
     <div className="movie-container">
       <div className="movie__columns">
@@ -27,16 +27,16 @@ function Movie({title, poster, genres, synopsis, rating, torrents}) {
 
 function MovieRating({rating}) {
   const score = Math.round(rating)/2;
-  const stars = document.querySelector(".movie__rating");
+  let span_class = 'movie__score';
+
+  let str = [];
+  for(let i = 0; i < parseInt(score); i++) str.push(Star());
+  score % 1 ? str.push(HalfStar()) : span_class+=' movie__score__margin';
 
   return (
     <div className="movie__rating">
-      <Star/>
-      <Star/>
-      <Star/>
-      <Star/>
-      <HalfStar/>
-      <span>{score}</span>
+      {str}
+      <span className={span_class}>{score}</span>
     </div>
   );
 }
@@ -63,7 +63,7 @@ function MovieGenre({genre}) {
 
 function MovieTorrent({torrent}) {
   return (
-    <div className="movie__torrent"><a href={torrent}><i className="fas fa-download"></i></a></div>
+    <a href={torrent}><div className="movie__torrent"><i className="fas fa-download"></i></div></a>
   );
 }
 
@@ -71,7 +71,6 @@ Movie.propTypes = {
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
-  synopsis: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
 };
 

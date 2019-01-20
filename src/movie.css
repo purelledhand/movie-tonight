@@ -55,13 +55,17 @@
     box-shadow: -10px 19px 38px rgba(83, 83, 83, 0.3), 10px 15px 12px rgba(80,80,80,0.22);
 }
 
-.movie__rating span {
-    font-size: 22px;
+.movie__score {
+    font-size: 20px;
+}
+
+.movie__score__margin {
+    margin-left: 10px;
 }
 
 .movie__star {
     color: #ffd600;
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .movie__torrents {
@@ -84,10 +88,16 @@
 }
 
 .movie__torrents .movie__torrent:hover {
-    box-shadow: 5px 5px 35px rgba(80,80,80,0.22);
+    animation-name: torrent-hover;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
 }
 
-.movie__torrents .movie__torrent a {
+@keyframes torrent-hover {
+    100% {box-shadow: 5px 5px 15px rgba(80,80,80,0.22)}
+}
+
+.movie__torrents a {
     color: #2a2a2a;
 }
 

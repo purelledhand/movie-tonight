@@ -16,7 +16,6 @@ class App extends Component {
                     key={movie.id}
                     id={movie.id}
                     genres={movie.genres}
-                    synopsis={movie.synopsis}
                     rating={movie.rating}
                     torrents={movie.torrents}
       />
