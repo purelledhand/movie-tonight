@@ -1,7 +1,5 @@
 ## MovieTonight
 
-#### 철컹철컹될까바 호스팅 내렸읍니다..
-
 ~https://purelledhand.github.io/movie-tonight/~
 
 MovieTonight is a service to download official torrents of movies
